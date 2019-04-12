@@ -1,26 +1,9 @@
 <!-- Notícias -->
 <hr>
-<div class="container">
 
-    <!-- <button style="margin-top: 20px;color: #333;background-color: #EEEEEE;border-color: transparent;" class="btn btn-default pull-right" onclick="myFunction()">
-        <h4 id="myText">Fechar</h4>
-    </button> -->
-
-</div>
 <br>
 
-<div id="myDIV">
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-                document.getElementById("myText").innerHTML = "Abrir";
-            }
-        }
-    </script>
+<div>
 
     <!DOCTYPE html>
     <html class="no-js" lang="pt-br">
@@ -519,7 +502,7 @@
 
                 $(document).ready(function () {
 
-                    $("button").click(function abriMaisPosts() {
+                    $("#mais").click(function abriMaisPosts() {
                         pages = pages + 4;
                         app.init();
                     });
@@ -534,40 +517,61 @@
         </script>
 
         <script type="text/template" id="blog-post-template">
-             {{#posts}}
-             <div id="noticia" class="noticia col-md-3">
-                 <div class="box-not blog-post" data-id="{{id}}">
-                     <img class="img-responsive" src="{{_embedded.wp:featuredmedia.0.source_url}}">
-                     <h3 class="link"><a>{{title.rendered}} </a></h3>
-                     <div class="row">
-                         <ul class="menu simple ">
-                         <!-- <p>Por: {{_embedded.author.0.name}}</p> -->
-                         <!-- <small>{{date_gmt}}</small> -->
-                         </ul>
+            {{#posts}}
+            <div id="noticia" class="noticia col-md-3">
+                <div class="box-not blog-post" data-id="{{id}}">
+                    <img class="img-responsive" src="{{_embedded.wp:featuredmedia.0.source_url}}">
+                    <h3 class="link"><a>{{title.rendered}} </a></h3>
+                    <div class="row">
+                        <ul class="menu simple ">
+                        <!-- <p>Por: {{_embedded.author.0.name}}</p> -->
+                        <!-- <small>{{date_gmt}}</small> -->
+                        </ul>
                     </div>
                  </div>
              </div>
              {{/posts}}
-             </script>
+        </script>
 
         <!-- <button type="button" id="mais" class="btn btn-default center-block" click="abriMaisPosts()">Mais Notícias</button> -->
-
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myDIV");
+                var y = document.getElementById("mais");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                    document.getElementById("myText").innerHTML = "Fechar";
+                } else {
+                    x.style.display = "none";
+                    document.getElementById("myText").innerHTML = "Abrir";
+                    // abilitar botão mais notícias ao fechar div da matéria
+                    y.style.display = "block";
+                }
+            }
+        </script>
         <script type="text/template" id="single-post-template">
-                <div class="blog-post" data-id="{{id}}">
-                    <h3>{{title.rendered}}</h3>
-                    <small>{{ date_gmt }}</small>
-                    <hr>
-                    <!-- <img class="img-responsive" src="{{_embedded.wp:featuredmedia.0.source_url}}"> -->
-                    <div style="text-align: justify;
-                    text-justify: inter-word;">{{{content.rendered}}}</div>
-                    <div class="callout">
-                        <ul class="menu simple">
-                            <!-- <li>Author: {{_embedded.author.0.name}}</li> -->
-                        </ul>
-                    </div>
+            <div class="container">
+                <button style="margin-top: 20px;color: #333;background-color: #EEEEEE;border-color: transparent;" id="btnfechar" class="btn btn-default pull-right" onclick="myFunction()">
+                    <h4 id="myText">Fechar</h4>
+                </button>
+            </div>
+            <br>
+            <div id="myDIV" class="blog-post" data-id="{{id}}">
+                <h3>{{title.rendered}}</h3>
+                <small>{{ date_gmt }}</small>
+                <hr>
+                <!-- <img class="img-responsive" src="{{_embedded.wp:featuredmedia.0.source_url}}"> -->
+                <div style="text-align: justify;
+                text-justify: inter-word;">{{{content.rendered}}}</div>
+                <div class="callout">
+                    <ul class="menu simple">
+                        <!-- <li>Author: {{_embedded.author.0.name}}</li> -->
+                    </ul>
                 </div>
-            </script>
-
+            </div>
+        </script>
+        <button type="button" id="mais" class="btn btn-default center-block" click="abriMaisPosts()" style="display: none">Mais
+            Notícias</button><br>
     </body>
 
     </html>
