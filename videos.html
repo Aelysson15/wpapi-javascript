@@ -14,44 +14,36 @@
         .item .date {
             color: #888 !important;
         }
-
         .more {
             margin-top: 20px !important;
         }
-
         .noticia .box-not {
             min-height: 270px !important;
             background-color: #fff !important;
             box-shadow: 0 0 14px 0 rgba(132, 146, 166, .2) !important;
             margin-bottom: 40px !important;
         }
-
         .noticia p {
             font-size: 12px !important;
             padding: 0 10px !important;
         }
-
         .noticia img {
             width: 100% !important;
             border: none !important;
             margin-bottom: 10px !important;
         }
-
         .noticia h3 {
             font-size: 17px !important;
             padding: 10px 10px 10px 10px !important;
             font-weight: 400 !important;
         }
-
         .link {
             cursor: pointer;
             min-height: 100px;
         }
-
         .blog-post small {
             padding-bottom: 5px;
         }
-
         /* edição */
     </style>
 </head>
@@ -83,29 +75,23 @@
             var isArray = Array.isArray || function isArrayPolyfill(object) {
                 return objectToString.call(object) === "[object Array]"
             };
-
             function isFunction(object) {
                 return typeof object === "function"
             }
-
             function typeStr(obj) {
                 return isArray(obj) ? "array" : typeof obj
             }
-
             function escapeRegExp(string) {
                 return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&")
             }
-
             function hasProperty(obj, propName) {
                 return obj != null && typeof obj === "object" && propName in obj
             }
             var regExpTest = RegExp.prototype.test;
-
             function testRegExp(re, string) {
                 return regExpTest.call(re, string)
             }
             var nonSpaceRe = /\S/;
-
             function isWhitespace(string) {
                 return !testRegExp(nonSpaceRe, string)
             }
@@ -119,7 +105,6 @@
                 "`": "&#x60;",
                 "=": "&#x3D;"
             };
-
             function escapeHtml(string) {
                 return String(string).replace(/[&<>"'`=\/]/g, function fromEntityMap(s) {
                     return entityMap[s]
@@ -130,7 +115,6 @@
             var equalsRe = /\s*=/;
             var curlyRe = /\s*\}/;
             var tagRe = /#|\^|\/|>|\{|&|=|!/;
-
             function parseTemplate(template, tags) {
                 if (!template) return [];
                 var sections = [];
@@ -138,7 +122,6 @@
                 var spaces = [];
                 var hasTag = false;
                 var nonSpace = false;
-
                 function stripSpace() {
                     if (hasTag && !nonSpace) {
                         while (spaces.length) delete tokens[spaces.pop()]
@@ -149,7 +132,6 @@
                     nonSpace = false
                 }
                 var openingTagRe, closingTagRe, closingCurlyRe;
-
                 function compileTags(tagsToCompile) {
                     if (typeof tagsToCompile === "string") tagsToCompile = tagsToCompile.split(spaceRe, 2);
                     if (!isArray(tagsToCompile) || tagsToCompile.length !== 2) throw new Error("Invalid tags: " + tagsToCompile);
@@ -211,7 +193,6 @@
                 if (openSection) throw new Error('Unclosed section "' + openSection[1] + '" at ' + scanner.pos);
                 return nestTokens(squashTokens(tokens))
             }
-
             function squashTokens(tokens) {
                 var squashedTokens = [];
                 var token, lastToken;
@@ -229,7 +210,6 @@
                 }
                 return squashedTokens
             }
-
             function nestTokens(tokens) {
                 var nestedTokens = [];
                 var collector = nestedTokens;
@@ -255,7 +235,6 @@
                 }
                 return nestedTokens
             }
-
             function Scanner(string) {
                 this.string = string;
                 this.tail = string;
@@ -290,7 +269,6 @@
                 this.pos += match.length;
                 return match
             };
-
             function Context(view, parentContext) {
                 this.view = view;
                 this.cache = {
@@ -330,7 +308,6 @@
                 if (isFunction(value)) value = value.call(this.view);
                 return value
             };
-
             function Writer() {
                 this.cache = {}
             }
@@ -369,7 +346,6 @@
                 var self = this;
                 var buffer = "";
                 var value = context.lookup(token[1]);
-
                 function subRender(template) {
                     return self.render(template, context, partials)
                 }
@@ -443,7 +419,7 @@
     <!-- configuração da api -->
     <script>
         jQuery(document).ready(function ($) {
-            const RESTURL = 'https://rest.unifacisa.edu.br/wp-json/'
+            const RESTURL = 'https://seu_site_wordpress/wp-json/'
             var pages = 4;
             var app = {
                 init: function () {
@@ -460,8 +436,8 @@
                         $('.description').html(response.description)
                     }).fail(function () { alert('Erro ao carregar URL') })
                 }, loadPosts: function () {
-                    var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=7'
-                    // var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=3925'
+                    var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=categoria_especifica' // Aqui a categoria específica
+                    // var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=categoria_especifica'
                     $.get(url).done(function (response) {
                         var posts = { posts: response }
                         var template = $('#blog-post2-template').html()
@@ -491,7 +467,6 @@
             }
             // chamar mais posts
             app.init();
-
             $(document).ready(function () {
                 // var y = document.getElementById("mais");
                 $("#mais2").click(function abriMaisPosts2() {
@@ -518,9 +493,9 @@
                     <!-- <small>{{date_gmt}}</small> -->
                     </ul>
                 </div>
-                </div>
-            </div>
-            {{/posts}}
+             </div>
+         </div>
+         {{/posts}}
     </script>
 
     <!-- <button type="button" id="mais2" class="btn btn-default center-block" click="abriMaisPosts()">Mais Vídeos</button> -->
