@@ -450,7 +450,7 @@
         <!-- configuração da api -->
         <script>
             jQuery(document).ready(function ($) {
-                const RESTURL = 'https://rest.unifacisa.edu.br/wp-json/'
+                const RESTURL = 'https://seu_site_wordpress/wp-json/'
                 var pages = 8;
                 var app = {
                     init: function () {
@@ -467,8 +467,8 @@
                             $('.description').html(response.description)
                         }).fail(function () { alert('Erro ao carregar URL') })
                     }, loadPosts: function () {
-                        var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=3898'
-                        // var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=3925'
+                        var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=categoria_especifica' // Aqui a categoria específica
+                        // var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=categoria_especifica'
                         $.get(url).done(function (response) {
                             var posts = { posts: response }
                             var template = $('#blog-post-template').html()
@@ -1027,7 +1027,7 @@
         <!-- configuração da api -->
         <script>
             jQuery(document).ready(function ($) {
-                const RESTURL = 'https://rest.unifacisa.edu.br/wp-json/'
+                const RESTURL = 'https://seu_site_wordpress/wp-json/'
                 var pages = 4;
                 var app = {
                     init: function () {
@@ -1044,8 +1044,8 @@
                             $('.description').html(response.description)
                         }).fail(function () { alert('Erro ao carregar URL') })
                     }, loadPosts: function () {
-                        var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=7'
-                        // var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=3925'
+                        var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=categoria_especifica' // Aqui a categoria específica
+                        // var url = RESTURL + 'wp/v2/posts?_embed&per_page=' + pages + '&categories=categoria_especifica'
                         $.get(url).done(function (response) {
                             var posts = { posts: response }
                             var template = $('#blog-post2-template').html()
